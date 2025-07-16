@@ -4,6 +4,7 @@
  */
 package local.laura.FastAndFuriousFood.api.controller;
 
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import local.laura.FastAndFuriousFood.domain.model.Produto;
@@ -55,13 +56,13 @@ public class ProdutoController {
 
    @PostMapping("/produtos")
    @ResponseStatus(HttpStatus.CREATED)
-   public Produto adicionar(@RequestBody Produto produto){
+   public Produto adicionar(@Valid @RequestBody Produto produto){
    
        return produtoRepository.save(produto);
    }
    
     @PutMapping("/produtos/{produtoID}")
-    public ResponseEntity<Produto> atualizar(@PathVariable Long produtoID, @RequestBody Produto produto){
+    public ResponseEntity<Produto> atualizar(@Valid @PathVariable Long produtoID, @RequestBody Produto produto){
        
         if(!produtoRepository.existsById(produtoID)){
             return ResponseEntity.notFound().build();
