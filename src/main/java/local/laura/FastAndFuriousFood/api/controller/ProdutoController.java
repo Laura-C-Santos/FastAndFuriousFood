@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
+@RequestMapping("/produtos")
 public class ProdutoController {
     
     @Autowired
@@ -42,6 +44,11 @@ public class ProdutoController {
     public List<Produto> listas(){
         return produtoRepository.findAll();
     
+    }
+    
+    @GetMapping("/cat/{categoria}")
+    public List<Produto> listarPorCategoria(@PathVariable String categoria) {
+        return produtoRepository.findByCategoria(categoria); // Certifique que esse método existe no repository
     }
     
     @GetMapping("/produtos/{produtoID}")

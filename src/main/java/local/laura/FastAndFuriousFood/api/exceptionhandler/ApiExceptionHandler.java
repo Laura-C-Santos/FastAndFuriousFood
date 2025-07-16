@@ -53,7 +53,6 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(problema, headers, status);
     }
 
-    // 👇 ADICIONE ESTE TRECHO:
     @ExceptionHandler(DomainException.class)
     public ResponseEntity<Object> handleDomainException(DomainException ex, WebRequest request) {
         ProblemaException problema = new ProblemaException();
