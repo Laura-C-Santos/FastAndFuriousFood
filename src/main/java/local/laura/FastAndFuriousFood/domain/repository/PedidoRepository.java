@@ -4,10 +4,19 @@
  */
 package local.laura.FastAndFuriousFood.domain.repository;
 
+import java.util.List;
+import local.laura.FastAndFuriousFood.domain.model.Pedido;
+import local.laura.FastAndFuriousFood.domain.model.StatusPedido;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 /**
  *
  * @author ppjatb
  */
-public interface PedidoRepository {
-    
+
+@Repository
+public interface PedidoRepository extends JpaRepository<Pedido, Long> {
+    List<Pedido> findByStatus(StatusPedido status);
 }
+
